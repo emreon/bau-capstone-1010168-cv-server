@@ -1,0 +1,15 @@
+{
+    "name": "bau-capstone-1010168-cv-server",
+    "version": "1.0.0",
+    "description": "Bahcesehir University Capstone Project 1010168 Computer Vision Server (PC)",
+    "type": "module",
+    "scripts": {
+        "start": "node src/app.js"
+    },
+    "author": "Emre",
+    "license": "MIT",
+    "dependencies": {
+        "sharp": "^0.30.6",
+        "ws": "^8.8.0"
+    }
+}
