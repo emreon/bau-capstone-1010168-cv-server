@@ -85,12 +85,14 @@ function start() {
             //     size: 51337
             // }
             const timeMs = Date.now();
-            const imgPath = `img/${timeMs}_frame.jpg`;
+            const cvPath = `${path.join(__dirname, '../cv')}`;
+            const testImgPath = `${path.join(cvPath, 'test.py')}`;
+            const imgPath = `${path.join(__dirname, '../img', `${timeMs}_frame.jpg`)}`;
             sharp(data).toFile('cv/test.jpg', (err, info) => {
                 if (err) console.error(err);
                 console.log(info);
 
-                exec('python test.py', { cwd: `${path.join(__dirname, '../cv')}` }, (err, stdout, stderr) => {
+                exec('python test.py', { cwd: cvPath }, (err, stdout, stderr) => {
                     if (err) {
                         console.error(err);
                         return;
