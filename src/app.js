@@ -14,6 +14,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(dirname(__filename), '../');
 process.stdout.write(`${FgCyan}${__dirname}${Reset}\n\n`);
 
+// https://stackoverflow.com/questions/35072428/open-a-directory-in-file-explorer
+exec(`start "" "${__dirname}"`);
+
 // Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
 // Python 2.7.15
 // Python 3.8.2
