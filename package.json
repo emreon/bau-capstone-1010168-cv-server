@@ -4,7 +4,8 @@
     "description": "Bahcesehir University Capstone Project 1010168 Computer Vision Server (PC)",
     "type": "module",
     "scripts": {
-        "start": "node src/app.js"
+        "start": "node src/app.js",
+        "build": "caxa --input \".\" --output \"server.exe\" -- \"{{caxa}}/node_modules/.bin/node\" \"{{caxa}}/src/app.js\""
     },
     "author": "Emre",
     "license": "MIT",
