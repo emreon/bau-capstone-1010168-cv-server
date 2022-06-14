@@ -88,7 +88,7 @@ function start() {
             const cvPath = `${path.join(__dirname, '../cv')}`;
             const testImgPath = `${path.join(cvPath, 'test.py')}`;
             const imgPath = `${path.join(__dirname, '../img', `${timeMs}_frame.jpg`)}`;
-            sharp(data).toFile('cv/test.jpg', (err, info) => {
+            sharp(data).toFile(testImgPath, (err, info) => {
                 if (err) console.error(err);
                 console.log(info);
 
