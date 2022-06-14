@@ -1,4 +1,6 @@
+import fse from 'fs-extra';
 import { exec } from 'node:child_process';
+import fs from 'node:fs';
 import path from 'node:path';
 import { dirname } from 'path';
 import sharp from 'sharp';
@@ -9,7 +11,7 @@ import { FgCyan, Reset } from './colors.js';
 // #region Python Check
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.join(dirname(__filename), '../');
 process.stdout.write(`${FgCyan}${__dirname}${Reset}\n\n`);
 
 // Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
@@ -85,9 +87,10 @@ function start() {
             //     size: 51337
             // }
             const timeMs = Date.now();
-            const cvPath = `${path.join(__dirname, '../cv')}`;
-            const testImgPath = `${path.join(cvPath, 'test.py')}`;
-            const imgPath = `${path.join(__dirname, '../img', `${timeMs}_frame.jpg`)}`;
+            const cvPath = `${path.join(__dirname, 'cv/')}`;
+            const testImgPath = `${path.join(cvPath, 'test.jpg')}`;
+            const imgPath = `${path.join(__dirname, 'img/', `${timeMs}_frame.jpg`)}`;
+            const resultPath = `${path.join(__dirname, 'img/', `${timeMs}_result.txt`)}`;
             sharp(data).toFile(testImgPath, (err, info) => {
                 if (err) console.error(err);
                 console.log(info);
@@ -103,6 +106,9 @@ function start() {
                     }
 
                     process.stdout.write(stdout);
+
+                    fse.moveSync(testImgPath, imgPath);
+                    fs.writeFileSync(resultPath, stdout);
                 });
             });
         }
